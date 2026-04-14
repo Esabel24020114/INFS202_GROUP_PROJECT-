@@ -1,0 +1,381 @@
+/* ── Full-screen app shell ─────────────────────────── */
+.home-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--clr-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle African-pattern watermark at the bottom */
+.home-app::after {
+  content: '';
+  position: fixed;
+  bottom: 60px;
+  left: 0; right: 0;
+  height: 260px;
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23C9A227' stroke-width='1' stroke-opacity='0.08'%3E%3Cpolygon points='60,10 110,35 110,85 60,110 10,85 10,35'/%3E%3Cpolygon points='60,25 95,42 95,78 60,95 25,78 25,42'/%3E%3Cpolygon points='60,40 80,50 80,70 60,80 40,70 40,50'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 120px 120px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Header ────────────────────────────────────────── */
+.app-header {
+  background: var(--clr-primary);
+  padding: 52px 24px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.app-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-header__icon { font-size: 1.8rem; line-height: 1; }
+
+.app-header__name {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--clr-white);
+  letter-spacing: -.01em;
+}
+
+.app-header__bell {
+  background: rgba(255,255,255,.15);
+  border: none;
+  border-radius: 50%;
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  color: var(--clr-white);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.app-header__bell:hover { background: rgba(255,255,255,.25); }
+
+/* ── Scrollable body ───────────────────────────────── */
+.app-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px 22px 32px;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 100px;
+}
+
+/* ── Greeting ──────────────────────────────────────── */
+.greeting { margin-bottom: 24px; }
+
+.greeting__title {
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--clr-dark);
+  margin-bottom: 4px;
+  letter-spacing: -.01em;
+}
+
+.greeting__sub {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--clr-mid);
+}
+
+/* ── Balance Card ──────────────────────────────────── */
+.balance-card {
+  background: var(--clr-white);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 28px;
+  border: 1.5px solid var(--clr-border);
+}
+
+.balance-card__label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--clr-muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 10px;
+}
+
+.balance-card__amount {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--clr-gold);
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+
+/* ── Action Buttons ────────────────────────────────── */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--clr-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: var(--shadow-grn);
+  width: 100%;
+  text-align: left;
+}
+
+.action-btn:hover {
+  background: var(--clr-primary-d);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(27,94,32,.3);
+}
+
+.action-btn:active { transform: translateY(0); }
+
+.action-btn__icon {
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,.15);
+  border-radius: var(--radius-sm);
+  display: grid; place-items: center;
+  color: var(--clr-white);
+  flex-shrink: 0;
+}
+
+.action-btn__label {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--clr-white);
+  letter-spacing: .01em;
+}
+
+/* ── Recent Activity ───────────────────────────────── */
+.recent-section { }
+
+.recent-section__title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--clr-dark);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--clr-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1.5px solid var(--clr-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--clr-border);
+  background: var(--clr-white);
+  transition: background var(--transition);
+}
+
+.activity-item:last-child { border-bottom: none; }
+.activity-item:hover { background: rgba(27,94,32,.03); }
+
+.activity-item__icon {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.activity-item__icon--green {
+  background: rgba(27,94,32,.1);
+  color: var(--clr-primary);
+}
+
+.activity-item__icon--gold {
+  background: rgba(201,162,39,.12);
+  color: var(--clr-gold);
+}
+
+.activity-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-item__name {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--clr-dark);
+}
+
+.activity-item__date {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--clr-muted);
+}
+
+.activity-item__amount {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.activity-item__amount--green { color: var(--clr-primary); }
+.activity-item__amount--gold  { color: var(--clr-gold); }
+
+/* ── Bottom Navigation ─────────────────────────────── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--clr-white);
+  border-top: 1.5px solid var(--clr-border);
+  display: flex;
+  align-items: stretch;
+  z-index: 50;
+  box-shadow: 0 -4px 20px rgba(33,33,33,.08);
+}
+
+.bottom-nav__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 12px 8px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--clr-muted);
+  transition: color var(--transition);
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.bottom-nav__item:hover { color: var(--clr-primary-l); }
+
+.bottom-nav__item--active {
+  color: var(--clr-primary);
+}
+
+
+/* ── Desktop: full browser width ───────────────────── */
+@media (min-width: 600px) {
+  .home-app {
+    max-width: 100%;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .app-header {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .app-body {
+    max-width: 100%;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .bottom-nav {
+    max-width: 100%;
+    left: 0;
+    transform: none;
+  }
+
+  .balance-card {
+    max-width: 100%;
+  }
+
+  .action-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .action-btn {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    text-align: center;
+    gap: 14px;
+    max-width: 100%;
+  }
+
+  .action-btn__icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .action-btn__label { font-size: 1rem; }
+
+  .activity-list { max-width: 100%; }
+
+  .greeting__title { font-size: 2.2rem; }
+}
+
+@media (min-width: 960px) {
+  .app-header {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  .app-body {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  .balance-card {
+    padding: 40px 48px;
+  }
+
+  .balance-card__amount { font-size: 3.4rem; }
+
+  .greeting__title { font-size: 2.6rem; }
+
+  .action-btn {
+    padding: 40px 20px;
+  }
+
+  .action-btn__icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .action-btn__label { font-size: 1.1rem; }
+}

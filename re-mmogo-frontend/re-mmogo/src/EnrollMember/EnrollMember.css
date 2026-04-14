@@ -1,0 +1,125 @@
+.enroll-page { background: var(--clr-bg); padding-bottom: 80px; }
+.enroll-container { max-width: 1100px; }
+
+.enroll-header { padding: 52px 0 36px; }
+.enroll-header h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700;
+  color: var(--clr-dark); margin-bottom: 10px; letter-spacing: -.01em;
+}
+.enroll-header p { color: var(--clr-mid); font-size: 1rem; }
+
+.enroll-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px; align-items: start;
+}
+
+.enroll-form-wrap {
+  background: var(--clr-white);
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: 36px;
+}
+
+.enroll-form { display: flex; flex-direction: column; }
+.form-group { margin-bottom: 18px; }
+
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.enroll-submit { width: 100%; justify-content: center; padding: 15px; font-size: 1rem; margin-top: 8px; }
+
+/* Members panel */
+.members-panel {
+  background: var(--clr-white);
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: sticky; top: 88px;
+}
+
+.members-panel__header {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: var(--clr-primary);
+}
+
+.members-panel__header h2 {
+  font-size: 0.9rem; font-family: var(--font-heading);
+  font-weight: 600; color: var(--clr-white);
+}
+
+.members-count {
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--clr-primary);
+  background: var(--clr-white);
+  padding: 3px 12px; border-radius: var(--radius-full);
+}
+
+.members-list { list-style: none; max-height: 480px; overflow-y: auto; }
+
+.member-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--clr-border);
+  transition: background var(--transition);
+}
+.member-item:last-child { border-bottom: none; }
+.member-item:hover { background: rgba(27,94,32,.04); }
+
+.member-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--clr-primary);
+  color: var(--clr-white);
+  font-size: 0.75rem; font-weight: 700;
+  display: grid; place-items: center;
+  flex-shrink: 0; text-transform: uppercase;
+  font-family: var(--font-heading);
+}
+
+.member-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+
+.member-name {
+  font-size: 0.88rem; font-weight: 600; color: var(--clr-dark);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.member-date { font-size: 0.74rem; color: var(--clr-muted); }
+
+.badge {
+  font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em;
+  padding: 3px 10px; border-radius: var(--radius-full);
+  flex-shrink: 0; font-family: var(--font-heading);
+}
+
+.badge--member    { background: var(--clr-surface-2); color: var(--clr-mid); }
+.badge--signatory { background: rgba(27,94,32,.12); color: var(--clr-primary); border: 1px solid rgba(27,94,32,.2); }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 28px; right: 28px;
+  background: var(--clr-primary);
+  color: var(--clr-white);
+  padding: 14px 24px; border-radius: var(--radius-sm);
+  font-size: 0.88rem; font-weight: 500;
+  box-shadow: var(--shadow-grn); z-index: 999;
+  animation: fadeInUp 0.25s ease;
+  font-family: var(--font-heading);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .enroll-layout { grid-template-columns: 1fr; }
+  .members-panel { position: static; }
+  .members-list  { max-height: 300px; }
+}
+@media (max-width: 520px) {
+  .form-row-2    { grid-template-columns: 1fr; }
+  .enroll-form-wrap { padding: 22px 18px; }
+}
