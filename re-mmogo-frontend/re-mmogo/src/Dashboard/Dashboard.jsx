@@ -2,7 +2,7 @@
 import './Dashboard.css';
 
 const members = [
-  { id: 1, name: 'Keabetswe Moalosi',     contributions: 12, totalPaid: 12000, loanBalance: 0,    interest: 5200, status: 'Good' },
+  { id: 1, name: 'Keabeswe Moalosi',     contributions: 12, totalPaid: 12000, loanBalance: 0,    interest: 5200, status: 'Good' },
   { id: 2, name: 'Mpho Setlhare',         contributions: 12, totalPaid: 12000, loanBalance: 3000, interest: 4800, status: 'Good' },
   { id: 3, name: 'Boitumelo Kgosidintsi', contributions: 11, totalPaid: 11000, loanBalance: 0,    interest: 5000, status: 'Good' },
   { id: 4, name: 'Lesego Tau',            contributions: 10, totalPaid: 10000, loanBalance: 6000, interest: 3200, status: 'Behind' },
